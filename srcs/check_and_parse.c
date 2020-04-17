@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_and_parse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taegon-i <taegon-i@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcremin <jcremin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/22 13:48:52 by taegon-i          #+#    #+#             */
-/*   Updated: 2020/02/20 15:52:08 by taegon-i         ###   ########.fr       */
+/*   Created: 2020/04/17 13:52:26 by jcremin           #+#    #+#             */
+/*   Updated: 2020/04/17 13:52:33 by jcremin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ void		add_in_stack(t_stack_all *stack, t_stack *elem)
 		}
 		else
 		{
-			// tmp = elem;
-			// elem = stack->a_stack;
-			// elem = tmp;
-			//
-			//
 			tmp = stack->a_stack;
 			while (tmp->next)
 			{
@@ -41,19 +36,9 @@ void		add_in_stack(t_stack_all *stack, t_stack *elem)
 			}
 			tmp->next = elem;
 			elem->previous = tmp;
-
-
-
-
-
-			// tmp = stack->a_stack->previous;
-			// elem->previous = tmp;
-			// tmp->next = elem;
-			// elem->next = stack->a_stack;
-			// stack->a_stack->previous = elem;
 		}
+		stack->a_stack->last = elem;
 		stack->a_size++;
-		stack->a_stack->index = stack->a_size;
 
 	}
 }
@@ -82,7 +67,6 @@ t_stack		*create_elem(int number)
 	new->value = number;
 	new->previous = NULL;
 	new->next = NULL;
-	new->index = 0;
 	return (new);
 }
 
@@ -94,11 +78,6 @@ void	parse_string(t_stack_all *stack, char *str)
 
 	numbers = ft_strsplit(str, ' ');
 	i = 0;
-	// printf("numbers[0] = %s\n", numbers[0]);
-	// printf("numbers[1] = %s\n", numbers[1]);
-	// printf("numbers[2] = %s\n", numbers[2]);
-	// printf("atoi(ав) = %d\n", ft_atoi("ав"));
-
 	while (numbers[i])
 	{
 		if (!ft_isnum(numbers[i], 10))
@@ -121,10 +100,12 @@ t_stack_all	*contain_in_a(int argc, char *argv[])
 	stack->a_size = 0;
 	stack->b_stack = NULL;
 	stack->b_size = 0;
+	stack->check = 0;
 	if (argc == 2)
 		parse_string(stack, argv[1]);
 	else
 		parse_array(stack, argc, argv);
+
 
 	if (!stack->a_size)
 		error_message(2);

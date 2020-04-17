@@ -6,7 +6,7 @@
 /*   By: taegon-i <taegon-i@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 15:23:46 by taegon-i          #+#    #+#             */
-/*   Updated: 2020/02/20 15:55:18 by taegon-i         ###   ########.fr       */
+/*   Updated: 2020/03/03 16:00:42 by taegon-i         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 typedef struct			s_stack
 {
 	int					value;
-	int					index;
 	struct s_stack		*previous;
 	struct s_stack		*next;
+	struct s_stack		*last;
+	int					number;
+
 }						t_stack;
 
 typedef struct			s_stack_all
@@ -29,6 +31,18 @@ typedef struct			s_stack_all
 	t_stack				*b_stack;
 	size_t				a_size;
 	size_t				b_size;
+	t_stack				a_hold_first;
+	t_stack				a_hold_second;
+	t_stack				b_hold_first;
+	t_stack				b_hold_second;
+	int					min;
+	int					max;
+	int 				chank_size;
+	int					chank_count;
+	int 				chank_curr;
+	int 				chank_diap;
+	int					sred;
+	int					check;
 }						t_stack_all;
 
 /*
@@ -57,8 +71,8 @@ t_stack_all	*contain_in_a(int argc, char *argv[]);
 **	sa_sb_ss.c
 */
 
-void	sa(t_stack *stack);
-void	sb(t_stack *stack);
+void	sa(t_stack_all *stack);
+void	sb(t_stack_all *stack);
 void	ss(t_stack_all *stack);
 
 /*
@@ -70,7 +84,40 @@ void	pb(t_stack_all *stack_all);
 void		add_in_a_stack(t_stack_all *stack, t_stack *elem);
 void		add_in_b_stack(t_stack_all *stack, t_stack *elem);
 
+/*
+**	ra_rb_rr.c
+*/
 
+void	ra(t_stack_all *stack);
+void	rb(t_stack_all *stack);
+void	rr(t_stack_all *stack);
+
+/*
+**	rra_rrb_rrr.c
+*/
+
+void	rrb(t_stack_all *stack);
+void	rra(t_stack_all *stack);
+void	rrr(t_stack_all *stack);
+
+/*
+**	utils.c
+*/
+
+void	rrx(t_stack_all *stack_all, t_stack *stack);
+void	min_and_max(t_stack_all *stack_all);
+void	calc_diap_chank(t_stack_all *stack_all);
+int		num_chanks(t_stack_all *stack_all);
+void	calc_chank_size(t_stack_all *stack_all);
+void	numbering_stack(t_stack *stack);
+void	count_sred(t_stack_all *stack);
+
+/*
+**	sort.c
+*/
+
+size_t	found_small(t_stack *stack);
+void	small_to_up_stack(t_stack_all *stack_all, size_t counter);
 
 
 #endif

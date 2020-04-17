@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcremin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jcremin <jcremin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/21 13:57:03 by jcremin           #+#    #+#             */
-/*   Updated: 2019/02/21 14:12:16 by jcremin          ###   ########.fr       */
+/*   Created: 2020/04/17 13:52:04 by jcremin           #+#    #+#             */
+/*   Updated: 2020/04/17 13:52:07 by jcremin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+#include "push_swap.h"
+void	check_true_sort(t_stack_all *stack_all)
 {
-	if (alst != NULL && new != NULL)
-	{
-		new->next = *alst;
-		*alst = new;
-	}
+
 }
